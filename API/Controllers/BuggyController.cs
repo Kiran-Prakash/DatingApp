@@ -11,7 +11,6 @@ namespace API.Controllers
         public BuggyController(DataContext context)
         {
             this._context = context;
-            
         }
 
         [Authorize]
@@ -21,28 +20,27 @@ namespace API.Controllers
             return "secret text";
         }
 
-        [Authorize]
         [HttpGet("not-found")]
         public ActionResult<AppUser> GetNotFound()
         {
             var thing = _context.Users.Find(-1);
-            if(thing == null) return NotFound();
+            if (thing == null) return NotFound();
             return Ok(thing);
         }
 
-        [Authorize]
         [HttpGet("server-error")]
-        public ActionResult<string> GetServerError(){
+        public ActionResult<string> GetServerError()
+        {
             var thing = _context.Users.Find(-1);
             var thingToReturn = thing.ToString();
             return thingToReturn;
         }
 
-        [Authorize]
+
         [HttpGet("bad-request")]
-        public ActionResult<string> GetBadRequest(){
+        public ActionResult<string> GetBadRequest()
+        {
             return BadRequest("This is not a good request");
         }
-
     }
 }
