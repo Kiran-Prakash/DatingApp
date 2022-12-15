@@ -14,6 +14,8 @@ export class MemberListComponent implements OnInit {
 
   ngOnInit(): void {
     this.memberService.getMembers().subscribe(members=>{
+      console.log(members.length);
+      console.log(members);
       this.members = members;
     })
   }
